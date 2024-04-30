@@ -31,11 +31,11 @@ jobs:
           - 5432:5432
           
    
-    steps:     
-    - name: Get latest
-    - uses: actions/checkout@v2
-    
-    - name: Create database schema
-      run: |
-            ls -la
+    steps:    
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v1
+      - name: Ls
+        run: |
+            ls -la   
+      #- name: Create database schema        
       # run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
