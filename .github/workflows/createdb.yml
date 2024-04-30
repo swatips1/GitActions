@@ -33,5 +33,6 @@ jobs:
    
     steps:     
     - name: Create database schema
-      working-directory: ../db
-      run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
+      run: |
+      ls -la
+      # run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
