@@ -32,7 +32,10 @@ jobs:
           
    
     steps:     
+    - name: Get latest
+    - uses: actions/checkout@v2
+    
     - name: Create database schema
       run: |
-      ls -la
+            ls -la
       # run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
