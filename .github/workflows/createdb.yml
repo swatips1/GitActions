@@ -29,7 +29,9 @@ jobs:
         ports:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
-
-    steps:  
+          
+   
+    steps:     
     - name: Create database schema
-      run: psql -f ../db/create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
+      working-directory: ../db
+      run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
