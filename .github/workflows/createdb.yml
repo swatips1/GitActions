@@ -38,8 +38,10 @@ jobs:
         run: |
             ls -la   
       - name: Create database        
-        run: psql -f db/create_db.sql postgresql://postgres:postgres@localhost:5432/postgres   
+        run: psql -f db/dmv/create_db.sql postgresql://postgres:postgres@localhost:5432/postgres   
       - name: Create table script
-        run: cat db/tbl*.sql > db/create_tables.sql
+        run: cat db/dmv/tbl*.sql > db/dmv/create_tables.sql
       - name: Create tables        
-        run: psql -f db/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
+        run: psql -f db/dmv/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
+      - name: Create Constraints        
+        run: psql -f db/dmv/constraints.sql postgresql://postgres:postgres@localhost:5432/postgres
