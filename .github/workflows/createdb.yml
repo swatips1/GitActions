@@ -38,4 +38,4 @@ jobs:
         run: |
             ls -la   
       - name: Create database schema        
-        run: psql -f create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
+        run: psql -f db/create_schema.sql postgresql://postgres:postgres@localhost:5432/postgres
