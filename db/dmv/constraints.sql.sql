@@ -1,0 +1,1 @@
+ALTER TABLE teacher ADD CONSTRAINT FK_teacher_person FOREIGN KEY (person_id) REFERENCES person(id);
