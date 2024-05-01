@@ -10,7 +10,7 @@ jobs:
   example_matrix:
     strategy:
       matrix:
-        folder: [AIML, DMV]        
+        folder: [AIML, dmv]        
     runs-on: ubuntu-latest
     services:
       # Label used to access the service container
