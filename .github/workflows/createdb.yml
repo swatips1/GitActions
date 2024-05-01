@@ -43,6 +43,12 @@ jobs:
         run: psql -f db/${{ matrix.folder }}/tables/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
       - name: Create Constraints        
         run: psql -f db/${{ matrix.folder }}/constraints.sql postgresql://postgres:postgres@localhost:5432/postgres
+  build_commom:            
+    runs-on: ubuntu-latest  
+    needs: build_individual_dbs
+    steps:
+      - name: Check db 
+        run: psql -c "SELECT * FROM dmv.users" postgresql://postgres:postgres@localhost:5432/postgres   
 
   # build:
   #   name: Build
