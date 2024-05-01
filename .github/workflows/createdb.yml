@@ -10,50 +10,50 @@ jobs:
   example_matrix:
     strategy:
       matrix:
-        folder: [1, 2]        
-    runs-on: ${{ matrix.folder }}
+        folder: [AIML, DMV]        
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v1
-      - name: Ls
-        run: |
-            ls -la
+      - name: Ls ${{ matrix.folder }}
+        run: |            
+            ls -la ${{ matrix.folder }}
       
-  build:
-    name: Build
-    runs-on: ubuntu-latest
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
 
-    # Service containers to run with `container-job`
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          # Maps tcp port 5432 on service container to the host
-          - 5432:5432
+  #   # Service containers to run with `container-job`
+  #   services:
+  #     # Label used to access the service container
+  #     postgres:
+  #       # Docker Hub image
+  #       image: postgres
+  #       # Provide the password for postgres
+  #       env:
+  #         POSTGRES_PASSWORD: postgres
+  #       # Set health checks to wait until postgres has started
+  #       options: >-
+  #         --health-cmd pg_isready
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #       ports:
+  #         # Maps tcp port 5432 on service container to the host
+  #         - 5432:5432
           
    
-    steps:    
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v1
-      - name: Ls
-        run: |
-            ls -la   
-      - name: Create database        
-        run: psql -f db/dmv/create_db.sql postgresql://postgres:postgres@localhost:5432/postgres   
-      - name: Create table script
-        run: cat db/dmv/tables/*.sql > db/dmv/tables/create_tables.sql
-      - name: Create tables        
-        run: psql -f db/dmv/tables/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
-      - name: Create Constraints        
-        run: psql -f db/dmv/constraints.sql postgresql://postgres:postgres@localhost:5432/postgres
+  #   steps:    
+  #     - name: Check out the repository to the runner
+  #       uses: actions/checkout@v1
+  #     - name: Ls
+  #       run: |
+  #           ls -la   
+  #     - name: Create database        
+  #       run: psql -f db/dmv/create_db.sql postgresql://postgres:postgres@localhost:5432/postgres   
+  #     - name: Create table script
+  #       run: cat db/dmv/tables/*.sql > db/dmv/tables/create_tables.sql
+  #     - name: Create tables        
+  #       run: psql -f db/dmv/tables/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
+  #     - name: Create Constraints        
+  #       run: psql -f db/dmv/constraints.sql postgresql://postgres:postgres@localhost:5432/postgres
