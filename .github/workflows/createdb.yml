@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Ls ${{ matrix.folder }}
         run: |            
-            ls -la ${{ matrix.folder }}
+            ls -la db/${{ matrix.folder }}
       
   # build:
   #   name: Build
