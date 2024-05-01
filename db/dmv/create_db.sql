@@ -1,1 +1,1 @@
-sudo su postgres createdb -O dmv
+create database dmv
