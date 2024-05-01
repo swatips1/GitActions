@@ -1,1 +1,1 @@
-sudo su postgres createdb -O AIML
+create database AIML
