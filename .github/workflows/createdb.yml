@@ -7,10 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  example_matrix:
-    strategy:
-      matrix:
-        folder: [AIML, dmv]        
+  build_individual_dbs:            
     runs-on: ubuntu-latest
     services:
       # Label used to access the service container
@@ -29,6 +26,9 @@ jobs:
         ports:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
+    strategy:
+      matrix:
+        folder: [AIML, dmv]
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v1
@@ -43,6 +43,7 @@ jobs:
         run: psql -f db/${{ matrix.folder }}/tables/create_tables.sql postgresql://postgres:postgres@localhost:5432/postgres
       - name: Create Constraints        
         run: psql -f db/${{ matrix.folder }}/constraints.sql postgresql://postgres:postgres@localhost:5432/postgres
+
   # build:
   #   name: Build
   #   runs-on: ubuntu-latest
