@@ -1,1 +1,1 @@
-sudo su postgres createdb -O somedb
+sudo su postgres createdb -O dmv
