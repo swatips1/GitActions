@@ -37,7 +37,7 @@ jobs:
                ls -la   
          - name: Create databases        
            run: |
-               sh build.sh
+               sh ./github/workflows/build.sh
   # build_individual_dbs:            
   #   runs-on: ubuntu-latest
   #   services:
